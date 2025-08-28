@@ -1,0 +1,19 @@
+﻿@model Vidly.Models.Customers
+
+@{
+    ViewBag.Title = "Customer Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    @* page heading *@
+    <div style="text-align: center">
+        <h1 style="font-weight: bold">Customer Details</h1>
+    </div>
+
+    @* page content *@
+    <div style="margin-top: 20px">
+        <h4>Customer id: @Model.CustomerId</h4>
+        <h4>Customer name: @Model.Name</h4>
+    </div>
+</div>

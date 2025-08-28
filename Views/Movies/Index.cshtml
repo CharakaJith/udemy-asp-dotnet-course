@@ -1,0 +1,41 @@
+﻿@model List<Vidly.Models.Movies>
+
+@{
+    ViewBag.Title = "Movies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    @* page heading *@
+    <div style="text-align: center">
+        <h1 style="font-weight: bold">Movies</h1>
+    </div>
+
+    @* page content *@
+    <div style="text-align: center; margin-top: 20px">
+        @if (Model.Count == 0)
+        {
+            <h4 style="color: darkgray">We don't have any movies yet.</h4>
+        }
+        else
+        {
+            <table class="table table-bordered table-striped" style="margin: 0 auto; width: 60%">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var movie in Model)
+                    {
+                        <tr>
+                            <td>
+                                <span class="hover-pointer-underline">@movie.Title</span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
