@@ -2,7 +2,7 @@
 {
     public class RandomMovieViewModel
     {
-        public Movies? Movie { get; set; }
-        public List<Customers>? Customers { get; set; }
+        public Movie? Movie { get; set; }
+        public List<Customer>? Customers { get; set; }
     }
 }

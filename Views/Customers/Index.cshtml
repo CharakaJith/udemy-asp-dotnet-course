@@ -1,4 +1,4 @@
-﻿@model List<Vidly.Models.Customers>
+﻿@model List<Vidly.Models.Customer>
 
 @{
     ViewBag.Title = "Customers";
@@ -23,6 +23,8 @@
                 <thead class="table-dark">
                     <tr>
                         <th>Name</th>
+                        <th>News Letter</th>
+                        <th>Discount Rate</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +36,8 @@
                                     <span class="hover-pointer-underline">@customer.Name</span>
                                 </a>
                             </td>
+                            <td>@(customer.IsSubscribedToNewsLetter ? "Subscribed" : "Not Subscribed")</td>
+                            <td>@customer.MembershipType?.DiscountRate</td>
                         </tr>
                     }
                 </tbody>

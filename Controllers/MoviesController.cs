@@ -5,19 +5,19 @@ namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
-        private readonly List<Movies> movies = new List<Movies>
+        private readonly List<Movie> movies = new List<Movie>
         {
-            new Movies
+            new Movie
             {
                 MovieId = 1,
                 Title = "Shrek"
             },
-            new Movies
+            new Movie
             {
                 MovieId = 2,
                 Title = "Happy death day"
             },
-            new Movies
+            new Movie
             {
                 MovieId = 3,
                 Title = "Wall-E"
