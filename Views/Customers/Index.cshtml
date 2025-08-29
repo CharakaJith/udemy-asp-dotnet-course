@@ -39,7 +39,7 @@
                             </td>
                             <td>@(customer.IsSubscribedToNewsLetter ? "Subscribed" : "Not Subscribed")</td>
                             <td>@customer.MembershipType?.Name</td>
-                            <td>@customer.MembershipType?.DiscountRate</td>
+                            <td>@customer.MembershipType?.DiscountRate %</td>
                         </tr>
                     }
                 </tbody>

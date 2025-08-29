@@ -13,7 +13,45 @@
 
     @* page content *@
     <div style="margin-top: 20px">
-        <h4>Customer id: @Model.CustomerId</h4>
-        <h4>Customer name: @Model.Name</h4>
+        @* customer details *@
+        <div style="line-height: 0.8;">
+            <p>
+                <span style="font-weight: bold">Reference id: </span>@Model.CustomerId
+            </p>
+
+            <p>
+                <span style="font-weight: bold">Customer name: </span> @Model.Name
+            </p>
+
+            <p>
+                <span style="font-weight: bold">Birthdate: </span> @Model.BirthDate.ToString("dd/MM/yyyy")
+            </p>
+
+            <p>
+                <span style="font-weight: bold">New letter: </span> @(Model.IsSubscribedToNewsLetter ? "Subscribed" : "Not Subscribed")
+            </p>
+        </div>
+        
+        @* membership details *@
+        <div style="text-align: left; margin-top: 30px">
+            <table class="table table-bordered table-striped" style="width: 80%">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Membership Type</th>
+                        <th>Signup Fee</th>
+                        <th>Months</th>
+                        <th>Discount Rate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.MembershipType?.Name</td>
+                        <td>$ @Model.MembershipType?.SignupFee</td>
+                        <td>@Model.MembershipType?.DurationInMonths</td>
+                        <td>@Model.MembershipType?.DiscountRate %</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

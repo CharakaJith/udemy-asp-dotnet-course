@@ -28,7 +28,7 @@ namespace Vidly.Controllers
 
         public IActionResult Details(int id)
         {
-            Customer customer = this._context.Customer.FirstOrDefault(c => c.CustomerId == id);
+            Customer customer = this._context.Customer.Include(c => c.MembershipType).FirstOrDefault(c => c.CustomerId == id);
 
             return View(customer);
         }
