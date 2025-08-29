@@ -3,7 +3,7 @@
     public class MembershipType
     {
         public byte MembershipTypeId { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public short SignupFee { get; set; }
         public byte DurationInMonths { get; set; }
         public byte DiscountRate { get; set; }

@@ -23,6 +23,9 @@
                 <thead class="table-dark">
                     <tr>
                         <th>Title</th>
+                        <th>Genre</th>
+                        <th>Released Date</th>
+                        <th>Stocks</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,8 +33,13 @@
                     {
                         <tr>
                             <td>
-                                <span class="hover-pointer-underline">@movie.Title</span>
+                                <a asp-area="" asp-controller="Movies" asp-route-id="@movie.MovieId" asp-action="Details">
+                                    <span class="hover-pointer-underline">@movie.Title</span>
+                                </a>                                
                             </td>
+                            <td>@movie.Genre.Name</td>
+                            <td>@movie.ReleasedDate.ToString("dd/MM/yyyy")</td>
+                            <td>@movie.NumInStock</td>
                         </tr>
                     }
                 </tbody>

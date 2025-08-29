@@ -1,0 +1,43 @@
+﻿@model Vidly.Models.Movie
+
+@{
+    ViewBag.Title = "Movie Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    @* page heading *@
+    <div style="text-align: center">
+        <h1 style="font-weight: bold">Movie Details</h1>
+    </div>
+
+    @* page content *@
+    <div style="margin-top: 20px">
+        @* movie details *@
+        <div style="line-height: 0.8;">
+            <p>
+                <span style="font-weight: bold">Reference id: </span>@Model.MovieId
+            </p>
+
+            <p>
+                <span style="font-weight: bold">Movie title: </span> @Model.Title
+            </p>
+
+            <p>
+                <span style="font-weight: bold">Genre: </span> @Model.Genre.Name
+            </p>
+
+            <p>
+                <span style="font-weight: bold">Release date: </span> @Model.ReleasedDate.ToString("dd/MM/yyyy")
+            </p>
+
+            <p>
+                <span style="font-weight: bold">Added date: </span> @Model.AddedDate.ToString("dd/MM/yyyy")
+            </p>
+
+            <p>
+                <span style="font-weight: bold">Number in stocks: </span> @Model.NumInStock
+            </p>
+        </div>
+    </div>
+</div>

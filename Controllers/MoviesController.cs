@@ -1,32 +1,36 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Vidly.Data;
 using Vidly.Models;
 
 namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
-        private readonly List<Movie> movies = new List<Movie>
+        private ApplicationDbContext _context;
+
+        public MoviesController(ApplicationDbContext context)
         {
-            new Movie
-            {
-                MovieId = 1,
-                Title = "Shrek"
-            },
-            new Movie
-            {
-                MovieId = 2,
-                Title = "Happy death day"
-            },
-            new Movie
-            {
-                MovieId = 3,
-                Title = "Wall-E"
-            },
-        };
+            this._context = context;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            this._context.Dispose();
+        }
 
         public IActionResult Index()
         {
-            return View(this.movies);
+            List<Movie> movies = this._context.Movie.Include(m => m.Genre).ToList();
+
+            return View(movies);
+        }
+
+        public IActionResult Details(int id)
+        {
+            Movie movie = this._context.Movie.Include(m => m.Genre).FirstOrDefault(m => m.MovieId == id);
+
+            return View(movie);
         }
     }
 }
