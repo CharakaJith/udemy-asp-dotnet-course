@@ -24,6 +24,7 @@
                     <tr>
                         <th>Name</th>
                         <th>News Letter</th>
+                        <th>Membership Type</th>
                         <th>Discount Rate</th>
                     </tr>
                 </thead>
@@ -37,6 +38,7 @@
                                 </a>
                             </td>
                             <td>@(customer.IsSubscribedToNewsLetter ? "Subscribed" : "Not Subscribed")</td>
+                            <td>@customer.MembershipType?.Name</td>
                             <td>@customer.MembershipType?.DiscountRate</td>
                         </tr>
                     }
