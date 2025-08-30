@@ -7,8 +7,15 @@
 
 <div>
     @* page heading *@
-    <div style="text-align: center">
-        <h1 style="font-weight: bold">Customers</h1>
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <div class="flex-grow-1 text-center">
+            <h1 class="fw-bold m-0">Customers</h1>
+        </div>
+
+        @* add new customer button *@
+        <button class="btn btn-primary" onclick="location.href='@Url.Action("CustomerForm", "Customers")'">
+            Add Customer
+        </button>
     </div>
     
     @* page content *@
@@ -19,13 +26,14 @@
         }
         else
         {
-            <table class="table table-bordered table-striped" style="margin: 0 auto; width: 60%">
+            <table class="table table-bordered table-striped" style="margin: 0 auto; width: 100%">
                 <thead class="table-dark">
                     <tr>
                         <th>Name</th>
                         <th>News Letter</th>
                         <th>Membership Type</th>
                         <th>Discount Rate</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,6 +48,19 @@
                             <td>@(customer.IsSubscribedToNewsLetter ? "Subscribed" : "Not Subscribed")</td>
                             <td>@customer.MembershipType?.Name</td>
                             <td>@customer.MembershipType?.DiscountRate %</td>
+                            <td>
+                                @* edit button *@
+                                <a asp-controller="Customers" asp-action="EditCustomer" asp-route-id="@customer.CustomerId"
+                                   class="btn btn-sm btn-success me-2" title="Edit Customer">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </a>
+
+                                @* delete button *@
+                                <a asp-controller="Customers" asp-action="Delete" asp-route-id="@customer.CustomerId"
+                                   class="btn btn-sm btn-danger" title="Delete Customer">
+                                    <i class="bi bi-trash-fill"></i>
+                                </a>
+                            </td>
                         </tr>
                     }
                 </tbody>

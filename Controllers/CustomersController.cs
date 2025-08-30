@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Vidly.Data;
 using Vidly.Models;
+using Vidly.Models.ViewModels;
 
 namespace Vidly.Controllers
 {
@@ -32,5 +33,66 @@ namespace Vidly.Controllers
 
             return View(customer);
         }
+
+        #region add new customer
+        public IActionResult CustomerForm()
+        {
+            List<MembershipType> membershipTypes = this._context.MembershipType.ToList();
+
+            CustomerFormViewModel viewModel = new CustomerFormViewModel
+            {
+                Customer = new Customer(),
+                MembershipTypes = membershipTypes
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult SaveCustomer(Customer customer)
+        {
+            if (customer.CustomerId == 0)
+            {
+                this._context.Customer.Add(customer);
+            }
+            else
+            {
+                Customer customerToUpdate = this._context.Customer.FirstOrDefault(c => c.CustomerId == customer.CustomerId);
+                if (customerToUpdate == null)
+                {
+                    return NotFound();
+                }
+
+                customerToUpdate.Name = customer.Name;
+                customerToUpdate.BirthDate = customer.BirthDate;
+                customerToUpdate.MembershipTypeId = customer.MembershipTypeId;
+                customerToUpdate.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
+            }
+
+            this._context.SaveChanges();
+
+            return RedirectToAction("Index", "Customers");
+        }
+        #endregion
+
+        #region edit customer
+        public IActionResult EditCustomer(int id)
+        {
+            List<MembershipType> membershipTypes = this._context.MembershipType.ToList();
+            Customer customer = this._context.Customer.Include(c => c.MembershipType).FirstOrDefault(c => c.CustomerId == id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            CustomerFormViewModel viewModel = new CustomerFormViewModel
+            {
+                Customer = customer,
+                MembershipTypes = membershipTypes
+            };
+
+            return View("CustomerForm", viewModel);
+        }
+        #endregion
     }
 }

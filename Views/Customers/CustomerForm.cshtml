@@ -1,0 +1,43 @@
+﻿@model Vidly.Models.ViewModels.CustomerFormViewModel
+
+@{
+    ViewBag.Title = "Add New Customer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow-lg p-4" style="max-width: 500px; width: 100%; border-radius: 12px;">
+        @* page heading *@
+        <div class="text-center mb-4">
+            <h1 class="fw-bold">Add New Customer</h1>
+        </div>
+
+        @* customer form *@
+        @using (Html.BeginForm("SaveCustomer", "Customers"))
+        {
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Customer.Name, new { @class = "form-label fw-semibold" })
+                @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control", placeholder = "Enter customer name" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Customer.BirthDate, new { @class = "form-label fw-semibold" })
+                @Html.TextBoxFor(m => m.Customer.BirthDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+            </div>
+
+            <div class="mb-3 checkbox">
+                <label>
+                    @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsLetter) <span style="font-weight: bold">Subscribe to News Letter</span>
+                </label>
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Customer.MembershipTypeId, new { @class = "form-label fw-semibold" })
+                @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "MembershipTypeId", "Name"), "Select Membership Type", new { @class = "form-control", type = "date" })
+            </div>
+
+            @Html.HiddenFor(m => m.Customer.CustomerId)
+            <button type="submit" class="btn btn-primary w-100" style="margin-top: 30px">Save</button>
+        }
+    </div>
+</div>
