@@ -15,7 +15,7 @@ namespace Vidly.Data.Migrations
                 keyColumn: "MembershipTypeId",
                 keyValue: 1,
                 columns: new[] { "Name" },
-                values: new object[] { "Free" }
+                values: new object[] { "Pay as you go" }
             );
 
             migrationBuilder.UpdateData(

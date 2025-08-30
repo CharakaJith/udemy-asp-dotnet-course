@@ -15,7 +15,7 @@ namespace Vidly.Data.Migrations
                 columns: new[] { "MembershipTypeId", "SignupFee", "DurationInMonths", "DiscountRate" },
                 values: new object[,]
                 {
-                    { 1, 0, 0, 0 },    // free
+                    { 1, 0, 0, 0 },    // pay as you go
                     { 2, 30, 1, 10 },   // monthly
                     { 3, 90, 3, 15 },   // quarterly
                     { 4, 300, 12, 20 }  // yearly

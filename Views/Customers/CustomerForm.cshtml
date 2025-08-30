@@ -15,28 +15,37 @@
         @* customer form *@
         @using (Html.BeginForm("SaveCustomer", "Customers"))
         {
+            @Html.ValidationSummary(false, "", new { @style = "color: red; font-weight: bold;" })
+
             <div class="mb-3">
                 @Html.LabelFor(m => m.Customer.Name, new { @class = "form-label fw-semibold" })
                 @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control", placeholder = "Enter customer name" })
+                @Html.ValidationMessageFor(m => m.Customer.Name, "", new { @style = "color: red; font-weight: bold;" })
             </div>
 
             <div class="mb-3">
                 @Html.LabelFor(m => m.Customer.BirthDate, new { @class = "form-label fw-semibold" })
                 @Html.TextBoxFor(m => m.Customer.BirthDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                @Html.ValidationMessageFor(m => m.Customer.BirthDate, "", new { @style = "color: red; font-weight: bold;" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Customer.MembershipTypeId, new { @class = "form-label fw-semibold" })
+                @Html.DropDownListFor(
+                         m => m.Customer.MembershipTypeId,
+                         new SelectList(Model.MembershipTypes, "MembershipTypeId", "Name"),
+                         new { @class = "form-control", @prompt = "Select Membership Type" })
+                @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId, "", new { @style = "color: red; font-weight: bold;" })
             </div>
 
             <div class="mb-3 checkbox">
                 <label>
                     @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsLetter) <span style="font-weight: bold">Subscribe to News Letter</span>
                 </label>
-            </div>
-
-            <div class="mb-3">
-                @Html.LabelFor(m => m.Customer.MembershipTypeId, new { @class = "form-label fw-semibold" })
-                @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "MembershipTypeId", "Name"), "Select Membership Type", new { @class = "form-control" })
-            </div>
+            </div>            
 
             @Html.HiddenFor(m => m.Customer.CustomerId)
+            @Html.AntiForgeryToken() 
             <button type="submit" class="btn btn-primary w-100" style="margin-top: 30px">Save</button>
         }
     </div>
