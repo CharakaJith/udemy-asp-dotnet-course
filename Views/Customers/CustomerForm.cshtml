@@ -1,15 +1,15 @@
 ﻿@model Vidly.Models.ViewModels.CustomerFormViewModel
 
 @{
-    ViewBag.Title = "Add New Customer";
+    ViewBag.Title = Model.Customer.CustomerId == 0 ? "Add New Customer" : "Edit Customer";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
     <div class="card shadow-lg p-4" style="max-width: 500px; width: 100%; border-radius: 12px;">
-        @* page heading *@
+        @* form heading *@
         <div class="text-center mb-4">
-            <h1 class="fw-bold">Add New Customer</h1>
+            <h1 class="fw-bold">@(Model.Customer.CustomerId == 0 ? "Add New Customer" : "Edit Customer")</h1>
         </div>
 
         @* customer form *@
@@ -33,7 +33,7 @@
 
             <div class="mb-3">
                 @Html.LabelFor(m => m.Customer.MembershipTypeId, new { @class = "form-label fw-semibold" })
-                @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "MembershipTypeId", "Name"), "Select Membership Type", new { @class = "form-control", type = "date" })
+                @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "MembershipTypeId", "Name"), "Select Membership Type", new { @class = "form-control" })
             </div>
 
             @Html.HiddenFor(m => m.Customer.CustomerId)

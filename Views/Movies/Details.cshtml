@@ -7,8 +7,16 @@
 
 <div>
     @* page heading *@
-    <div style="text-align: center">
-        <h1 style="font-weight: bold">Movie Details</h1>
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <div class="flex-grow-1 text-center">
+            <h1 class="fw-bold m-0">Movie Details</h1>
+        </div>
+
+        @* add new customer button *@
+        <button class="btn btn-primary"
+                onclick="location.href='@Url.Action("EditMovie", "Movies", new { id = Model.MovieId })'">
+            Edit Movie
+        </button>
     </div>
 
     @* page content *@
